@@ -16,7 +16,7 @@ WORKDIR /app
 
 RUN git clone https://github.com/searxng/searxng.git .
 
-RUN pip3 install -e .
+RUN pip3 install --break-system-packages -e .
 
 EXPOSE 8080
 
