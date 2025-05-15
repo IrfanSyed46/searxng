@@ -5,7 +5,6 @@ RUN apk --no-cache add \
   python3 \
   py3-pip \
   py3-lxml \
-  py3-uvicorn \
   build-base \
   bash \
   curl \
