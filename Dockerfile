@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-# Install all system + Python dependencies (no missing modules this time)
+# Install required system + Python packages
 RUN apk --no-cache add \
   git \
   python3 \
@@ -26,14 +26,12 @@ RUN apk --no-cache add \
 # Set working directory
 WORKDIR /app
 
-# Clone latest SearXNG source
+# Clone full searxng repo
 RUN git clone https://github.com/searxng/searxng.git .
 
-# Install Python packages, break system protection if needed (PEP 668)
-RUN pip3 install --break-system-packages -e .
+# 👇 Install without -e (editable), just normal prod setup
+RUN pip3 install --break-system-packages .
 
-# Expose correct port
 EXPOSE 8080
 
-# Run the SearXNG server
 CMD ["./manage", "run"]
